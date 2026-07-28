@@ -79,3 +79,69 @@ button:active {
 button.bg-emerald-500, .bg-emerald-500 {
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.4) !important;
 }
+/* ==========================================
+   CLEAN & SMOOTH LIGHT MODERN THEME
+   ========================================== */
+
+/* 1. Smooth Soft Light Background */
+body {
+    background: #f8fafc !important; /* Soft Slate Light */
+    color: #0f172a !important;      /* Deep Crisp Dark Text */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* 2. Header & Titles */
+h1, h2, h3, .text-white {
+    color: #0f172a !important;
+}
+
+/* 3. Main Container & Cards (Smooth White Glass) */
+.bg-slate-900, .bg-gray-900, .bg-slate-800 {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01) !important;
+    border-radius: 1.25rem !important;
+}
+
+/* 4. Drop Zone (Clean Crisp Border & Subtle Background) */
+.border-dashed {
+    background: #f1f5f9 !important;
+    border: 2px dashed #cbd5e1 !important;
+    border-radius: 1rem !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.border-dashed:hover {
+    border-color: #10b981 !important;
+    background: #ecfdf5 !important;
+}
+
+/* 5. Buttons (Smooth Emerald & Soft Dark Accent) */
+button, .btn {
+    border-radius: 0.75rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Primary Green Button */
+.bg-emerald-500, button.bg-emerald-500 {
+    background-color: #10b981 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Secondary Action Buttons */
+.bg-slate-800, button.bg-slate-800, .bg-gray-800 {
+    background-color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+/* Hover & Click Effects */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Text Colors Fix for Light Mode */
+.text-slate-400, .text-gray-400 {
+    color: #64748b !important;
+}
