@@ -1,5 +1,5 @@
 /* ==========================================
-   ZXINGORG - ULTRA PREMIUM MODERN LIGHT UI
+   ZXINGORG - MODERN LIGHT SAAS THEME
    ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
@@ -14,46 +14,39 @@
     --text-muted: #94a3b8;
     --primary: #10b981;
     --primary-hover: #059669;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 20px -2px rgba(0,0,0,0.05);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05);
 }
 
-/* Base resets */
+/* Page Base */
 body {
     background-color: var(--bg-page) !important;
     color: var(--text-body) !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Navbar */
-header, nav {
-    background: var(--bg-card) !important;
-    border-bottom: 1px solid var(--border-light) !important;
-    backdrop-filter: blur(8px);
-}
-
-/* Headings */
-h1, h2, h3, h4, .text-white {
-    color: var(--text-heading) !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.02em;
-}
-
-/* Main Card Containers */
-.main-card, fieldset, main > div, .bg-slate-900, .bg-gray-900, .bg-slate-800 {
+/* Containers & Cards */
+.main-card {
     background: var(--bg-card) !important;
     border: 1px solid var(--border-light) !important;
     box-shadow: var(--shadow-md) !important;
     border-radius: 16px !important;
 }
 
-/* Upload Drop Area */
+/* Headings */
+h1, h2, h3, h4 {
+    color: var(--text-heading) !important;
+    letter-spacing: -0.02em;
+}
+
+/* Drop Zone Area */
 .border-dashed {
-    background-color: #f1f5f9 !important;
+    background-color: #f8fafc !important;
     border: 2px dashed #cbd5e1 !important;
-    border-radius: 12px !important;
-    transition: all 0.2s ease;
+    border-radius: 14px !important;
 }
 
 .border-dashed:hover {
@@ -61,75 +54,36 @@ h1, h2, h3, h4, .text-white {
     background-color: #ecfdf5 !important;
 }
 
-.border-dashed p, .border-dashed div, .border-dashed span {
-    color: var(--text-heading) !important;
-}
-
-/* Buttons Fix */
+/* Buttons Styling */
 button, .btn {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    font-weight: 600 !important;
-    border-radius: 10px !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.2s ease-in-out !important;
 }
 
-/* Active / Primary Button */
-button.bg-emerald-500, .bg-emerald-500 {
-    background-color: var(--primary) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+button:active {
+    transform: scale(0.98);
 }
 
-button.bg-emerald-500:hover {
-    background-color: var(--primary-hover) !important;
-}
-
-/* Secondary Action Buttons (Upload / Camera / Paste) */
-.bg-slate-800, .bg-slate-700, button.bg-slate-800, .bg-gray-800 {
-    background: #ffffff !important;
+/* Action & Secondary Buttons Override */
+.bg-slate-800 {
+    background-color: #ffffff !important;
     color: var(--text-heading) !important;
     border: 1px solid var(--border-light) !important;
     box-shadow: var(--shadow-sm) !important;
 }
 
-.bg-slate-800:hover, button.bg-slate-800:hover {
-    background: #f8fafc !important;
+.bg-slate-800:hover {
+    background-color: #f8fafc !important;
     border-color: #cbd5e1 !important;
 }
 
-/* FAQ Accordion Fix (Dark Boxes Completely Removed) */
-details, summary, .faq-item, details > summary {
-    background-color: var(--bg-card) !important;
-    color: var(--text-heading) !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: 12px !important;
-    padding: 14px 18px !important;
-    font-weight: 600 !important;
-    box-shadow: var(--shadow-sm) !important;
-}
-
-details[open] summary {
-    border-bottom: 1px solid var(--border-light) !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-}
-
-/* Format Cards (Barcode grid) */
-.grid > div {
+/* Header & Footer */
+header, nav {
     background: var(--bg-card) !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: 12px !important;
-    box-shadow: var(--shadow-sm) !important;
+    border-bottom: 1px solid var(--border-light) !important;
 }
 
-/* Text Accent Overrides */
-.text-slate-400, .text-gray-400, .text-slate-500 {
-    color: var(--text-muted) !important;
-}
-
-/* Footer Clean Look */
 footer {
     background: var(--bg-card) !important;
     border-top: 1px solid var(--border-light) !important;
-    color: var(--text-muted) !important;
 }
