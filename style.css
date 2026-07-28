@@ -1,1 +1,48 @@
+/* Custom Animations & Styles for ZXing Studio */
 
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* Drag and Drop Active Highlight */
+#dropzone.drag-over {
+  border-color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  transform: scale(0.99);
+}
+
+/* Pulse animation for scanning state */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    border-color: rgba(16, 185, 129, 0.9);
+  }
+}
+
+.scanning-active {
+  animation: pulse-border 1.5s infinite;
+}
+
+/* Smooth Focus Rings for Accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
