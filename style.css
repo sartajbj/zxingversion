@@ -1,60 +1,77 @@
 /* ==========================================
-   ZXINGORG - HIGH CONTRAST LIGHT THEME FIX
+   ZXINGORG - CLEAN CHATGPT-STYLE MODERN UI
    ========================================== */
 
-/* Background */
+/* 1. Global Light Base */
+:root {
+    --bg-main: #ffffff;
+    --bg-surface: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --accent: #10b981;
+}
+
 body {
-    background-color: #f8fafc !important;
-    color: #0f172a !important;
+    background-color: var(--bg-surface) !important;
+    color: var(--text-main) !important;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header & Nav Fix */
-header, nav, .bg-slate-900, .bg-gray-900 {
-    background-color: #ffffff !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-}
-
-/* Main Box Container */
-.main-card, fieldset, main > div {
-    background-color: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
-    border-radius: 1.25rem !important;
-}
-
-/* Drop Zone & Text Contrast Fix */
-.border-dashed {
-    background-color: #f8fafc !important;
-    border: 2px dashed #cbd5e1 !important;
+/* 2. Unified Card & Container Styling (No Dark Boxes) */
+.main-card, fieldset, .bg-slate-900, .bg-gray-900, .bg-slate-800, div[class*="bg-"] {
+    background-color: var(--bg-main) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01) !important;
     border-radius: 1rem !important;
+    color: var(--text-main) !important;
 }
 
-/* Drop Zone Text (Dark & Clear) */
-.border-dashed *, .border-dashed p, .border-dashed span, .border-dashed div {
-    color: #1e293b !important;
-    font-weight: 600 !important;
+/* 3. Header & Navigation Clean Look */
+header, nav {
+    background-color: var(--bg-main) !important;
+    border-bottom: 1px solid var(--border-color) !important;
 }
 
-.border-dashed .text-slate-400, .border-dashed .text-gray-400 {
-    color: #64748b !important;
+/* 4. Drop Zone Styling */
+.border-dashed {
+    background-color: var(--bg-surface) !important;
+    border: 2px dashed #cbd5e1 !important;
+    border-radius: 0.875rem !important;
 }
 
-/* Unselected Tabs Fix */
-button {
-    color: #334155 !important;
+.border-dashed * {
+    color: var(--text-main) !important;
 }
 
-/* Primary Green Action Button */
-button.bg-emerald-500, .bg-emerald-500 {
-    background-color: #10b981 !important;
+/* 5. Typography & Text Hierarchy */
+h1, h2, h3, h4, .text-white {
+    color: var(--text-main) !important;
+}
+
+p, span, .text-slate-400, .text-gray-400 {
+    color: var(--text-muted) !important;
+}
+
+/* 6. Buttons & Interactive Elements */
+button, .btn {
+    border-radius: 0.625rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease;
+}
+
+/* Primary Accent Buttons */
+.bg-emerald-500, button.bg-emerald-500 {
+    background-color: var(--accent) !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2) !important;
 }
 
-/* Bottom Buttons (Upload / Open Camera) */
-.bg-slate-800, .bg-slate-700, button.bg-slate-800 {
-    background-color: #f1f5f9 !important;
-    color: #0f172a !important;
-    border: 1px solid #cbd5e1 !important;
+/* Secondary Buttons / Format Cards */
+.bg-slate-800, .bg-gray-800 {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
 }
