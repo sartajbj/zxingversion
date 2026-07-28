@@ -1,109 +1,37 @@
-/* Custom Animations & Styles for ZXing Studio */
-
-/* Custom Smooth Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
-}
-
-/* Drag and Drop Active Highlight */
-#dropzone.drag-over {
-  border-color: #10b981 !important;
-  background-color: rgba(16, 185, 129, 0.08) !important;
-  transform: scale(0.99);
-}
-
-/* Pulse animation for scanning state */
-@keyframes pulse-border {
-  0%, 100% {
-    border-color: rgba(16, 185, 129, 0.4);
-  }
-  50% {
-    border-color: rgba(16, 185, 129, 0.9);
-  }
-}
-
-.scanning-active {
-  animation: pulse-border 1.5s infinite;
-}
-
-/* Smooth Focus Rings for Accessibility */
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid #10b981;
-  outline-offset: 2px;
-}
 /* ==========================================
-   PREMIUM MOBILE & GLOWING THEME IMPROVEMENTS
+   ZXINGORG - LIGHT & ULTRA-SMOOTH PREMIUM THEME
    ========================================== */
 
-/* 1. Deep Navy Gradient Background (Andhera Khatam) */
 body {
-    background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%, #030712 100%) !important;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
 }
 
-/* 2. Glassmorphic Drop Zone & Glowing Border */
-.border-dashed {
-    border-color: rgba(16, 185, 129, 0.4) !important;
-    background: rgba(30, 41, 59, 0.5) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(16, 185, 129, 0.15) !important;
-    border-radius: 1rem !important;
+/* Header & Nav */
+header, nav {
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
 }
 
-/* 3. Action Buttons Soft Glow & Modern Touch */
-button, .btn {
-    transition: all 0.3s ease !important;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-/* 4. Active Tab Highlight Glow */
-button.bg-emerald-500, .bg-emerald-500 {
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4) !important;
-}
-/* ==========================================
-   CLEAN & SMOOTH LIGHT MODERN THEME
-   ========================================== */
-
-/* 1. Smooth Soft Light Background */
-body {
-    background: #f8fafc !important; /* Soft Slate Light */
-    color: #0f172a !important;      /* Deep Crisp Dark Text */
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-/* 2. Header & Titles */
-h1, h2, h3, .text-white {
-    color: #0f172a !important;
-}
-
-/* 3. Main Container & Cards (Smooth White Glass) */
-.bg-slate-900, .bg-gray-900, .bg-slate-800 {
+/* Main Container Glass & Shadows */
+.main-card, fieldset, .bg-slate-900, .bg-gray-900, .bg-slate-800 {
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
     border-radius: 1.25rem !important;
 }
 
-/* 4. Drop Zone (Clean Crisp Border & Subtle Background) */
+/* Feature Badges (Privacy, Speed & Instant) */
+.badge-privacy {
+    background: #ecfdf5 !important;
+    color: #047857 !important;
+    border: 1px solid #a7f3d0 !important;
+    font-weight: 600;
+}
+
+/* Upload Drop Zone */
 .border-dashed {
     background: #f1f5f9 !important;
     border: 2px dashed #cbd5e1 !important;
@@ -116,32 +44,26 @@ h1, h2, h3, .text-white {
     background: #ecfdf5 !important;
 }
 
-/* 5. Buttons (Smooth Emerald & Soft Dark Accent) */
-button, .btn {
-    border-radius: 0.75rem !important;
-    font-weight: 600 !important;
-    transition: all 0.2s ease !important;
-}
-
-/* Primary Green Button */
-.bg-emerald-500, button.bg-emerald-500 {
+/* Primary Action Buttons */
+button.bg-emerald-500, .bg-emerald-500 {
     background-color: #10b981 !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3) !important;
+    font-weight: 600 !important;
 }
 
-/* Secondary Action Buttons */
-.bg-slate-800, button.bg-slate-800, .bg-gray-800 {
-    background-color: #e2e8f0 !important;
-    color: #1e293b !important;
+/* Results & Share Section Highlight */
+#result-section, .result-card {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 1rem !important;
 }
 
-/* Hover & Click Effects */
-button:active {
-    transform: scale(0.98);
+/* Typography fix */
+h1, h2, h3, strong {
+    color: #0f172a !important;
 }
 
-/* Text Colors Fix for Light Mode */
 .text-slate-400, .text-gray-400 {
     color: #64748b !important;
 }
