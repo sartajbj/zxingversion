@@ -1,69 +1,60 @@
 /* ==========================================
-   ZXINGORG - LIGHT & ULTRA-SMOOTH PREMIUM THEME
+   ZXINGORG - HIGH CONTRAST LIGHT THEME FIX
    ========================================== */
 
+/* Background */
 body {
     background-color: #f8fafc !important;
     color: #0f172a !important;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    min-height: 100vh;
 }
 
-/* Header & Nav */
-header, nav {
-    background: #ffffff !important;
+/* Header & Nav Fix */
+header, nav, .bg-slate-900, .bg-gray-900 {
+    background-color: #ffffff !important;
     border-bottom: 1px solid #e2e8f0 !important;
 }
 
-/* Main Container Glass & Shadows */
-.main-card, fieldset, .bg-slate-900, .bg-gray-900, .bg-slate-800 {
-    background: #ffffff !important;
+/* Main Box Container */
+.main-card, fieldset, main > div {
+    background-color: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
     border-radius: 1.25rem !important;
 }
 
-/* Feature Badges (Privacy, Speed & Instant) */
-.badge-privacy {
-    background: #ecfdf5 !important;
-    color: #047857 !important;
-    border: 1px solid #a7f3d0 !important;
-    font-weight: 600;
-}
-
-/* Upload Drop Zone */
+/* Drop Zone & Text Contrast Fix */
 .border-dashed {
-    background: #f1f5f9 !important;
+    background-color: #f8fafc !important;
     border: 2px dashed #cbd5e1 !important;
     border-radius: 1rem !important;
-    transition: all 0.2s ease-in-out;
 }
 
-.border-dashed:hover {
-    border-color: #10b981 !important;
-    background: #ecfdf5 !important;
+/* Drop Zone Text (Dark & Clear) */
+.border-dashed *, .border-dashed p, .border-dashed span, .border-dashed div {
+    color: #1e293b !important;
+    font-weight: 600 !important;
 }
 
-/* Primary Action Buttons */
+.border-dashed .text-slate-400, .border-dashed .text-gray-400 {
+    color: #64748b !important;
+}
+
+/* Unselected Tabs Fix */
+button {
+    color: #334155 !important;
+}
+
+/* Primary Green Action Button */
 button.bg-emerald-500, .bg-emerald-500 {
     background-color: #10b981 !important;
     color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3) !important;
-    font-weight: 600 !important;
 }
 
-/* Results & Share Section Highlight */
-#result-section, .result-card {
-    background: #f8fafc !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 1rem !important;
-}
-
-/* Typography fix */
-h1, h2, h3, strong {
+/* Bottom Buttons (Upload / Open Camera) */
+.bg-slate-800, .bg-slate-700, button.bg-slate-800 {
+    background-color: #f1f5f9 !important;
     color: #0f172a !important;
-}
-
-.text-slate-400, .text-gray-400 {
-    color: #64748b !important;
+    border: 1px solid #cbd5e1 !important;
 }
