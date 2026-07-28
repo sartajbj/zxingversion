@@ -3,157 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZXing Online Decoder - Free Barcode & QR Code Scanner</title>
-    <meta name="description" content="Decode 1D/2D barcodes & QR codes instantly in your browser with 100% privacy. Zero server uploads. Fast, secure, and client-side processing.">
+    <title>ZXingOrg — Online Barcode & QR Decoder</title>
     <link rel="stylesheet" href="style.css">
-    <!-- ZXing Engine Library -->
-    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- BRAND NAVBAR -->
     <header class="navbar">
-        <div class="container nav-content">
-            <a href="#" class="logo">ZXing<span>Org</span></a>
-            <div class="nav-badges">
-                <span class="badge badge-privacy">🔒 100% Client-Side</span>
-                <span class="badge badge-speed">⚡ Instant Decode</span>
-            </div>
-        </div>
+        <div class="brand">ZXingOrg</div>
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">QR Generator</a>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+        </nav>
     </header>
 
-    <!-- MAIN CONTAINER -->
     <main class="container">
 
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <h1>ZXing Online <span>Decoder</span></h1>
-            <p>Decode 1D/2D barcodes & QR codes instantly in your browser. Fast, secure, and 100% privacy-focused.</p>
-        </section>
-
-        <!-- MAIN SCANNER CARD -->
-        <div class="card scanner-card">
-            
-            <!-- TABS -->
-            <div class="tab-container">
-                <button id="tab-scan" class="tab-btn active">Scan & Read</button>
-                <button id="tab-create" class="tab-btn">Create QR</button>
-            </div>
-
-            <!-- UPLOAD / DROP AREA -->
-            <div id="drop-zone" class="drop-zone">
-                <div class="drop-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <!-- INPUT / UPLOAD CARD (IMAGE 1) -->
+        <section class="card drop-card">
+            <div class="drop-zone" id="drop-zone">
+                <div class="upload-icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="4" ry="4"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
                 </div>
-                <h3>Drag & Drop barcode image here</h3>
-                <p>or click to browse from your device</p>
-                <span class="kbd">Ctrl + V to paste image</span>
-                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                <h2>Drag & Drop barcode image here</h2>
+                <p class="subtext">or click to browse from your device</p>
+                <div class="paste-badge">Ctrl + V to paste image</div>
+                <input type="file" id="file-input" accept="image/*" style="display:none;">
             </div>
 
-            <!-- ACTION BUTTONS -->
-            <div class="action-grid">
-                <button id="btn-upload" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            <div class="action-buttons">
+                <button class="btn-outline" id="btn-browse">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                     Upload Image
                 </button>
-                <button id="btn-camera" class="btn btn-secondary">
+                <button class="btn-outline" id="btn-camera">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                     Open Camera
                 </button>
-                <button id="btn-paste" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                <button class="btn-outline" id="btn-paste">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
                     Paste Image
                 </button>
             </div>
+        </section>
 
-            <!-- CAMERA PREVIEW CONTAINER -->
-            <div id="camera-container" class="camera-box" style="display: none;">
-                <video id="video-preview"></video>
-                <button id="btn-stop-camera" class="btn btn-danger">Close Camera</button>
+
+        <!-- SMART RESULT CARD (IMAGE 2) -->
+        <section class="card result-card" id="result-card">
+            <div class="status-header">
+                <div class="check-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h1 class="status-title">Decode Succeeded</h1>
+                <p class="detected-type" id="detected-type">Wi-Fi QR Code Detected</p>
             </div>
 
-            <!-- RESULT DISPLAY AREA -->
-            <div id="result-card" class="result-box" style="display: none;">
-                <div class="result-header">
-                    <span class="status-badge">Scan Result</span>
-                    <span id="result-type" class="format-badge">QR_CODE</span>
+            <div class="result-body">
+                <!-- Field 1: Network Name -->
+                <div class="info-field-box">
+                    <span class="field-pill">NETWORK NAME</span>
+                    <div class="field-value" id="res-network">Losers</div>
                 </div>
-                <div id="result-text" class="result-body">Awaiting barcode...</div>
+
+                <!-- Field 2: Password with Eye Toggle -->
+                <div class="info-field-box">
+                    <span class="field-pill">PASSWORD</span>
+                    <div class="field-value-row">
+                        <span class="field-value text-red" id="res-password">hideApnalgaw</span>
+                        <button class="icon-btn" id="toggle-pass" title="Toggle Visibility">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Field 3: Security -->
+                <div class="info-field-box">
+                    <span class="field-pill">SECURITY</span>
+                    <div class="field-value" id="res-security">WPA</div>
+                </div>
+
+                <!-- Primary Action Buttons -->
                 <div class="result-actions">
-                    <button id="btn-copy" class="btn btn-primary">Copy Result</button>
-                    <a id="btn-open-link" href="#" target="_blank" class="btn btn-secondary" style="display: none;">Open Link</a>
-                    <button id="btn-share" class="btn btn-secondary">Share</button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- HOW TO USE SECTION -->
-        <section class="section">
-            <h2 class="section-title">How to Use ZXing Decoder</h2>
-            <p class="section-subtitle">Decode any barcode or QR code in 3 simple steps</p>
-            <div class="grid-3">
-                <div class="card step-card">
-                    <div class="step-num">1</div>
-                    <h3>Select Input</h3>
-                    <p>Upload an image file, capture directly via camera, or paste from your clipboard.</p>
-                </div>
-                <div class="card step-card">
-                    <div class="step-num">2</div>
-                    <h3>Instant Local Processing</h3>
-                    <p>Our JS engine parses raw data inside your browser with 100% zero-server privacy.</p>
-                </div>
-                <div class="card step-card">
-                    <div class="step-num">3</div>
-                    <h3>Smart Action Output</h3>
-                    <p>Copy formatted text, launch destination links, or share output effortlessly.</p>
+                    <button class="btn-primary blue-btn">
+                        <span>📋</span> Copy Password
+                    </button>
+                    <button class="btn-primary green-btn">
+                        <span>📥</span> Share
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
-        <section class="card section-card">
-            <h2>About ZXingOrg Online Decoder</h2>
-            <p>ZXingOrg provides a fast, privacy-focused online solution for decoding 1D and 2D barcodes directly inside modern web browsers. Powered by robust open-source library engines, it instantly reads 2D matrices (QR Code, Data Matrix, Aztec, PDF417) alongside standard 1D linear codes (EAN-13, Code 128, UPC-A).</p>
-            <p>Unlike cloud solutions, all decoding logic runs <strong>100% client-side</strong> using local JavaScript execution. None of your uploaded files, credentials, or decoded content ever leave your browser session.</p>
-        </section>
 
-        <!-- FAQ SECTION -->
-        <section class="section">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <details class="faq-item">
-                    <summary>What is ZXing Online Decoder?</summary>
-                    <div class="faq-answer">ZXing Online Decoder is a client-side web application designed to scan, read, and extract data from various barcode image formats without server uploading.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>Does it save my photos or scanned data?</summary>
-                    <div class="faq-answer">No. All image processing takes place locally inside your browser memory. No data is stored, transmitted, or logged on any external server.</div>
-                </details>
+        <!-- SUPPORTED FORMATS GRID (IMAGE 3) -->
+        <section class="formats-section">
+            <h2>Supported Barcode Formats</h2>
+            <p class="formats-sub">ZXing Online Decoder can scan and decode the most popular QR codes and barcode formats directly in your browser.</p>
+
+            <div class="formats-grid">
+                <div class="format-chip">QR Code</div>
+                <div class="format-chip">Data Matrix</div>
+                <div class="format-chip">PDF417</div>
+                <div class="format-chip">Aztec</div>
+                <div class="format-chip">EAN-13</div>
+                <div class="format-chip">EAN-8</div>
+                <div class="format-chip">UPC-A</div>
+                <div class="format-chip">UPC-E</div>
+                <div class="format-chip">Code 39</div>
+                <div class="format-chip">Code 128</div>
+                <div class="format-chip">ITF</div>
+                <div class="format-chip">Codabar</div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <div class="logo">ZXing<span>Org</span></div>
-                <p>Client-Side Barcode & QR Code Engine</p>
-            </div>
-            <div class="footer-links">
-                <a href="#">How to Use</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
-            </div>
-            <div class="footer-copy">
-                © 2026 ZXingOrg. Powered by Open Source Engine.
-            </div>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
 </body>
 </html>
