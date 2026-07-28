@@ -46,3 +46,36 @@ a:focus-visible {
   outline: 2px solid #10b981;
   outline-offset: 2px;
 }
+/* ==========================================
+   PREMIUM MOBILE & GLOWING THEME IMPROVEMENTS
+   ========================================== */
+
+/* 1. Deep Navy Gradient Background (Andhera Khatam) */
+body {
+    background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%, #030712 100%) !important;
+    min-height: 100vh;
+}
+
+/* 2. Glassmorphic Drop Zone & Glowing Border */
+.border-dashed {
+    border-color: rgba(16, 185, 129, 0.4) !important;
+    background: rgba(30, 41, 59, 0.5) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(16, 185, 129, 0.15) !important;
+    border-radius: 1rem !important;
+}
+
+/* 3. Action Buttons Soft Glow & Modern Touch */
+button, .btn {
+    transition: all 0.3s ease !important;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* 4. Active Tab Highlight Glow */
+button.bg-emerald-500, .bg-emerald-500 {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4) !important;
+}
