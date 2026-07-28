@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Short, Sharp & High-Ranking Meta Tags -->
+  <title>ZXing Decoder - Barcode & QR Scanner</title>
+  <meta name="title" content="ZXing Decoder - Barcode & QR Scanner">
+  <meta name="description" content="Free online ZXing barcode decoder. Scan Wi-Fi QR, vCard, and 1D/2D barcodes in browser with 100% privacy.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zxingorg.com/">
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eefbf6',
+              500: '#10b981',
+              600: '#059669',
+              dark: '#0f172a',
+              card: '#1e293b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- ZXing Engine CDN -->
+  <script src="https://unpkg.com/@zxing/library@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+  <!-- HEADER & NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="text-2xl font-black bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-500 bg-clip-text text-transparent tracking-tight">
+          ZXing<span class="text-white">Org</span>
+        </span>
+        <span class="hidden sm:inline-block text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          v2.0
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-900/60 p-1 rounded-full border border-slate-800/80 text-sm font-medium">
+        <a href="#sec-scan" class="px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 transition">Scanner</a>
+        <a href="#tab-create" class="px-4 py-1.5 rounded-full text-slate-300 hover:text-white hover:bg-slate-800/50 transition">QR Generator</a>
+        <a href="#formats" class="px-4 py-1.5 rounded-full text-slate-300 hover:text-white hover:bg-slate-800/50 transition">Formats</a>
+        <a href="#faq" class="px-4 py-1.5 rounded-full text-slate-300 hover:text-white hover:bg-slate-800/50 transition">FAQ</a>
+      </nav>
+
+      <!-- Trust Badge & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <span class="hidden lg:flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          100% Client-Side
+        </span>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 py-3 space-y-2 text-sm font-medium">
+      <a href="#sec-scan" class="block px-3 py-2 rounded-lg bg-emerald-500/10 text-emerald-400">Scanner & Decoder</a>
+      <a href="#tab-create" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">QR Generator</a>
+      <a href="#formats" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">Supported Formats</a>
+      <a href="#faq" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">FAQ</a>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="max-w-5xl mx-auto w-full px-4 py-8 space-y-12 flex-grow">
+    
+    <!-- Hero Title -->
+    <div class="text-center space-y-3 max-w-2xl mx-auto">
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        ZXing Online <span class="bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Decoder</span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        Decode 1D/2D barcodes & QR codes instantly in your browser. Fast, secure, and privacy-focused.
+      </p>
+    </div>
+
+    <!-- Main Tool Workspace -->
+    <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-4 sm:p-6 shadow-2xl shadow-emerald-950/20">
+      
+      <!-- Mode Tabs -->
+      <div class="flex gap-2 border-b border-slate-800/80 pb-4 mb-6">
+        <button id="tab-scan" class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20 transition">
+          Scan & Read
+        </button>
+        <button id="tab-create" class="px-5 py-2.5 rounded-xl font-semibold text-sm text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
+          Create QR
+        </button>
+      </div>
+
+      <!-- SCANNER WORKSPACE -->
+      <div id="sec-scan" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Dropzone & Upload Buttons -->
+        <div class="lg:col-span-7 space-y-4">
+          <div id="dropzone" class="border-2 border-dashed border-slate-700/80 hover:border-emerald-400/80 rounded-2xl p-8 sm:p-10 text-center transition cursor-pointer bg-slate-950/40 group">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition duration-300">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <p class="text-base font-semibold text-slate-200">Drag & Drop barcode image here</p>
+            <p class="text-xs text-slate-500 mt-1">or press <kbd class="px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded text-[10px]">Ctrl + V</kbd> to paste clipboard image</p>
+            <input type="file" id="file-input" class="hidden" accept="image/*">
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <button id="btn-upload" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+              Upload Image
+            </button>
+            <button id="btn-camera" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+              Open Camera
+            </button>
+            <button id="btn-paste" class="col-span-2 sm:col-span-1 py-2.5 px-4 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+              Paste Image
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Box -->
+        <div class="lg:col-span-5 bg-slate-950/60 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider">Smart Scan Result</h3>
+              <span id="badge-format" class="text-[10px] font-mono bg-slate-800 text-emerald-400 px-2 py-0.5 rounded border border-slate-700">Awaiting Input</span>
+            </div>
+
+            <div id="result-container" class="min-h-[160px] flex items-center justify-center text-center p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
+              <p class="text-xs text-slate-500">Scan or upload a barcode image to see instant smart actions here.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <h4 class="text-xs font-semibold text-slate-400 mb-2">Recent Scans (Local)</h4>
+            <div id="history-list" class="space-y-1.5 text-xs font-mono text-slate-400">
+              <p class="text-[11px] text-slate-600 italic">No history saved yet.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORMATS SECTION -->
+    <section id="formats" class="space-y-6 pt-6">
+      <h2 class="text-2xl font-bold text-center">Supported Barcode Formats</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">QR Code</p>
+          <p class="text-[10px] text-slate-500 mt-1">2D Matrix</p>
+        </div>
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">EAN-13</p>
+          <p class="text-[10px] text-slate-500 mt-1">Retail Products</p>
+        </div>
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">Code 128</p>
+          <p class="text-[10px] text-slate-500 mt-1">Logistics / Shipping</p>
+        </div>
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">Data Matrix</p>
+          <p class="text-[10px] text-slate-500 mt-1">2D Industrial</p>
+        </div>
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">Aztec Code</p>
+          <p class="text-[10px] text-slate-500 mt-1">Transport Tickets</p>
+        </div>
+        <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center">
+          <p class="font-bold text-sm text-emerald-400">PDF417</p>
+          <p class="text-[10px] text-slate-500 mt-1">ID Cards / Passports</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="space-y-4 pt-4">
+      <h2 class="text-xl font-bold text-center">Frequently Asked Questions</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        <details class="group bg-slate-900/50 border border-slate-800 rounded-xl p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-medium text-sm cursor-pointer text-slate-200">
+            What is ZXing Online Decoder?
+            <span class="transition group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-2 text-xs text-slate-400 leading-relaxed">
+            It is a browser-based scanning tool that extracts encoded data from barcodes and QR codes instantly using client-side JavaScript.
+          </p>
+        </details>
+        <details class="group bg-slate-900/50 border border-slate-800 rounded-xl p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex justify-between items-center font-medium text-sm cursor-pointer text-slate-200">
+            Does it save my scanned photos or Wi-Fi passwords?
+            <span class="transition group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-2 text-xs text-slate-400 leading-relaxed">
+            No. Your images and decoded information never leave your device. All calculations are handled locally in your browser memory.
+          </p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 py-6 bg-slate-950 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p>© 2026 ZXingOrg. Powered by Open Source ZXing Engine.</p>
+    </div>
+  </footer>
+
+  <!-- App Main Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
